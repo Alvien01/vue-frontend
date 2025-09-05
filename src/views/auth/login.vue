@@ -1,49 +1,30 @@
 <script setup lang="ts">
-
-//import ref dan reactive dari vue
 import { ref, reactive } from 'vue';
-
-//import useRouter dari vue-router
 import { useRouter } from 'vue-router';
-
-//import js cookie
 import Cookies from 'js-cookie';
-
-//import composable useLogin
 import { useLogin } from '../../composables/auth/useLogin';
 
-// Tipe untuk error validasi
 interface ValidationErrors {
     [key: string]: string
 }
 
-// Router
 const router = useRouter();
-
-// Composable login
 const { mutate, isPending } = useLogin();
 
-// Form state
 const username = ref<string>('');
 const password = ref<string>('');
-
-// Error state
 const errors = reactive<ValidationErrors>({})
 
-// Handle submit form
 const handleLogin = (e: Event) => {
     e.preventDefault()
-
-    //call mutasi login
     mutate(
         { username: username.value, password: password.value },
         {
             onSuccess: (data: any) => {
-
-                //set cookie token
+                // simpan token ke Cookies
                 Cookies.set('token', data.data.token)
 
-                //set cookie user
+                // simpan data user ke Cookies
                 Cookies.set(
                     'user',
                     JSON.stringify({
@@ -54,14 +35,11 @@ const handleLogin = (e: Event) => {
                     })
                 )
 
-                //redirect ke dashboard
-                router.push('/admin/dashboard')
+                // redirect ke dashboard admin
+                router.push({ name: 'dashboard' })
             },
             onError: (error: any) => {
-
-                //assign errors, error.response.data.errors)
                 Object.assign(errors, error.response.data.errors)
-
             },
         }
     )
