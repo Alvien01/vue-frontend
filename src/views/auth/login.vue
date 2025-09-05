@@ -7,7 +7,6 @@ import { useLogin } from '../../composables/auth/useLogin';
 interface ValidationErrors {
     [key: string]: string
 }
-
 const router = useRouter();
 const { mutate, isPending } = useLogin();
 
@@ -21,10 +20,7 @@ const handleLogin = (e: Event) => {
         { username: username.value, password: password.value },
         {
             onSuccess: (data: any) => {
-                // simpan token ke Cookies
                 Cookies.set('token', data.data.token)
-
-                // simpan data user ke Cookies
                 Cookies.set(
                     'user',
                     JSON.stringify({

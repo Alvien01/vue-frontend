@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Cookies from 'js-cookie'
-
-// ambil token dari Cookies
 const getToken = () => Cookies.get('token')
 
 const routes: RouteRecordRaw[] = [
