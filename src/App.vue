@@ -16,7 +16,7 @@ import SidebarMenu from "./components/SidebarMenu.vue";
           <i class="bi bi-list"></i>
         </button>
         <router-link :to="{ name: 'dashboard' }" class="navbar-brand">
-          HOME
+          Dashboard
         </router-link>
 
         <div class="collapse navbar-collapse">

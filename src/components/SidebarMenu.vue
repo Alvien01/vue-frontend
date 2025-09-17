@@ -1,8 +1,5 @@
 <script setup lang="ts">
-//import composable useLogout
 import { useLogout } from "../composables/auth/useLogout";
-
-//initialize useLogout
 const logout = useLogout();
 </script>
 

@@ -1,37 +1,17 @@
 <script setup lang="ts">
-
-//import ref dan reactive dari vue
 import { ref, reactive } from 'vue'
-
-//import useRouter dari vue-router
 import { useRouter } from 'vue-router'
-
-//import component SidebarMenu
 import SidebarMenu from '../../../components/SidebarMenu.vue'
-
-//import composable useUserCreate
 import { useUserCreate } from '../../../composables/user/useUserCreate'
-
-// Router instance
 const router = useRouter()
-
-// Form state
 const name = ref<string>('')
 const username = ref<string>('')
 const email = ref<string>('')
 const password = ref<string>('')
-
-// Validation errors
 const errors = reactive<Record<string, string>>({})
-
-// Mutation
 const { mutate, isPending } = useUserCreate()
-
-// Handle form submit
 const storeUser = (e: Event) => {
     e.preventDefault()
-
-    // Call user create mutation
     mutate(
         {
             name: name.value,
@@ -41,14 +21,10 @@ const storeUser = (e: Event) => {
         },
         {
             onSuccess: () => {
-
-                // Redirect to users index
                 router.push('/admin/users')
 
             },
             onError: (error: any) => {
-
-                // Assign validation errors to the errors object
                 Object.assign(errors, error.response.data.errors)
 
             },
