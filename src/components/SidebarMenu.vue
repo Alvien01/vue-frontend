@@ -11,6 +11,12 @@ const logout = useLogout();
     <router-link to="/admin/users" class="list-group-item list-group-item-action">
       Users
     </router-link>
+    <router-link to="/admin/products" class="list-group-item list-group-item-action">
+      Produk
+    </router-link>
+    <router-link to="/admin/checkout" class="list-group-item list-group-item-action">
+      Checkout
+    </router-link>
     <a href="#" @click="logout" class="list-group-item list-group-item-action">
       Logout
     </a>
